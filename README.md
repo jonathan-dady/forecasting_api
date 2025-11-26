@@ -155,9 +155,34 @@ Si vos colonnes ont des noms exotiques, dites-le à l'API via `date_column` et `
 }
 ```
 
-### 4. Changer de Modèle de Prévision
-Par défaut, l'API utilise **Prophet** (`"prophet"`).
-*(Note : Le support pour ARIMA est prévu mais pas encore actif)*
+### 4. Choisir le Modèle de Prévision
+
+L'API propose **3 modèles** de prévision. Vous pouvez choisir manuellement ou laisser l'IA décider.
+
+#### **Mode AUTO (Recommandé)** 🤖
+Le mode `"auto"` compare automatiquement **Prophet** et **SARIMAX** sur vos données et sélectionne le meilleur.
+
+```json
+{
+  "model": "auto",  // L'API choisit automatiquement
+  ...
+}
+```
+
+**Comment ça marche ?**
+1. L'API divise vos données (80% entraînement, 20% test)
+2. Elle teste Prophet ET SARIMAX sur ces données
+3. Elle calcule l'erreur de chaque modèle (MAE - Mean Absolute Error)
+4. Elle utilise le modèle le plus précis pour votre prévision finale
+
+---
+
+#### **Mode Manuel**
+
+**Prophet** (Meta/Facebook AI)
+- ✅ **Idéal pour** : Données avec tendances + saisonnalité complexe
+- ⚡ **Vitesse** : Rapide
+- 📊 **Cas d'usage** : Ventes e-commerce, trafic web, données quotidiennes
 
 ```json
 {
@@ -165,6 +190,30 @@ Par défaut, l'API utilise **Prophet** (`"prophet"`).
   ...
 }
 ```
+
+**ARIMA/SARIMAX** (Statistique classique)
+- ✅ **Idéal pour** : Séries temporelles régulières, économie/finance
+- ⚡ **Vitesse** : Très rapide
+- 📊 **Cas d'usage** : Prix d'actions, données météo, données mensuelles stables
+
+```json
+{
+  "model": "arima",
+  ...
+}
+```
+
+---
+
+#### Quel modèle choisir ?
+
+| Situation | Modèle recommandé |
+|-----------|-------------------|
+| **Vous ne savez pas** | `"auto"` |
+| **Données avec événements (Noël, Black Friday)** | `"prophet"` |
+| **Données très régulières/stables** | `"arima"` |
+| **Peu de données historiques (< 20 points)** | `"prophet"` |
+| **Beaucoup de données (> 100 points)** | `"auto"` |
 
 ---
 
