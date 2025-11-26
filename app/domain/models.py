@@ -11,6 +11,7 @@ class Frequency(str, Enum):
 class ForecastModel(str, Enum):
     PROPHET = "prophet"
     ARIMA = "arima"
+    AUTO = "auto"  # Sélection automatique du meilleur modèle
 
 class ForecastRequest(BaseModel):
     data: List[Dict[str, Any]] = Field(..., description="List of data points. Can be flexible.")

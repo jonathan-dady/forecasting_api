@@ -4,3 +4,5 @@ pydantic==2.10.4
 pandas==2.2.3
 prophet==1.1.6
 cmdstanpy==1.2.4
+statsmodels==0.14.4
+scikit-learn==1.5.2
