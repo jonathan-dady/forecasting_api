@@ -64,6 +64,35 @@ L'API sera accessible sur :
 
 ---
 
+## 🌐 Déploiement en Production (Render)
+
+Cette API est prête à être déployée sur **Render** gratuitement.
+
+### Configuration Render
+
+1. **Créer un nouveau Web Service** sur [Render](https://render.com)
+2. **Connecter votre repo GitHub** : `https://github.com/jonathan-dady/forecasting_api`
+3. **Configuration** :
+   - **Build Command** : `pip install -r requirements.txt` (auto-détecté)
+   - **Start Command** : `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - **Environment** : Laisser vide (aucune variable nécessaire)
+
+4. **Cliquer sur Deploy** et attendre 5-10 minutes
+
+### Votre API sera accessible sur :
+- `https://votre-app.onrender.com/docs` (Swagger UI)
+- `https://votre-app.onrender.com/api/v1/forecast` (Endpoint API)
+
+### ⚠️ Note sur le plan gratuit
+- L'API s'endort après 15 minutes d'inactivité
+- Premier appel après le réveil : 30-60 secondes
+- 750 heures/mois de disponibilité
+
+### Version Python
+Le fichier `.python-version` force l'utilisation de **Python 3.11.11** (compatible avec Prophet).
+
+---
+
 ## 📖 Guide d'Utilisation : "Quoi changer pour faire quoi ?"
 
 L'endpoint principal est `POST /api/v1/forecast`.
