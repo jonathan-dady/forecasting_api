@@ -1,6 +1,6 @@
 # Forecast API
 
-Une API de prévision de séries temporelles flexible et robuste, basée sur **FastAPI** et **Prophet**.
+Une API de prévision de séries temporelles flexible et robuste, basée sur **FastAPI**, **Arima** et **Prophet**.
 
 Cette API est conçue pour être facilement intégrée dans des workflows d'automatisation (comme n8n) grâce à sa capacité à comprendre différents formats de données d'entrée.
 
